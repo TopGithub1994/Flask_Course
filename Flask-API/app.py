@@ -30,6 +30,13 @@ city_add_args.add_argument("temp",type=str,required=True,help="Type temp need St
 city_add_args.add_argument("weather",type=str,required=True,help="Type weather need String!")
 city_add_args.add_argument("people",type=int,required=True,help="Type people need Interger!")
 
+# Update Request Parser
+city_update_args=reqparse.RequestParser()
+city_update_args.add_argument("name",type=str,help="Type name need String!")
+city_update_args.add_argument("temp",type=str,help="Type temp need String!")
+city_update_args.add_argument("weather",type=str,help="Type weather need String!")
+city_update_args.add_argument("people",type=int,help="Type people need Interger!")
+
 resource_field={
     "id":fields.Integer,
     "name":fields.String,
@@ -58,16 +65,40 @@ class WeatherCity(Resource):
 
     @marshal_with(resource_field)
     def get(self,city_id):
-        notFoundCity(city_id)
-        return mycity[city_id]
+        # notFoundCity(city_id)
+        result = CityModel.query.filter_by(id=city_id).first()
+        if not result:
+            abort(404,message="ไม่พบข้อมูลที่ร้องขอ")
+        return result
 
     @marshal_with(resource_field)
     def post(self,city_id):
+        result = CityModel.query.filter_by(id=city_id).first()
+        if result:
+            abort(404,message="The id can't be same!")
         args=city_add_args.parse_args()
         city=CityModel(id=city_id,name=args["name"],temp=args["temp"],weather=args["weather"],people=args["people"])
         db.session.add(city)
         db.session.commit()
         return city,201
+
+    @marshal_with(resource_field) # filter 
+    def patch(self,city_id):
+        args=city_update_args.parse_args()
+        result = CityModel.query.filter_by(id=city_id).first()
+        if not result:
+            abort(404,message="No data match!")
+        if args["name"]:
+            result.name=args["name"] 
+        if args["temp"]:
+            result.temp=args["temp"]
+        if args["weather"]:
+            result.weather=args["weather"]
+        if args["people"]:
+            result.people=args["people"]
+
+        db.session.commit()
+        return result
 
 # Call
 api.add_resource(WeatherCity,"/weather/<int:city_id>")
