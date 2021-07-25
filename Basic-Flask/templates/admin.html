@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <!-- {% if username == "topl3ack" %} -->
+        <div class="container">
+            <h2>Contact Form</h2>
+            <form action="{{url_for('signupForm')}}" method="get">
+                <div class="form-group">
+                    <label for="">Your Name</label>
+                    <input type="text" name="fname" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="">Details</label><br>
+                    <textarea name="description" class="form-control" cols="30" rows="10"></textarea>
+                </div>
+                <br>
+                <input type="submit" value="Submit" class="btn btn-success">
+            </form>
+        </div>
+        <!-- <img src="../static/picnic-food-03.jpg" alt=""> -->
+    <!-- {% else %} -->
+        <!-- <h1>Your are not Admin Please Back to Home Page</h1> -->
+    <!-- {% endif %} -->
+{% endblock %}

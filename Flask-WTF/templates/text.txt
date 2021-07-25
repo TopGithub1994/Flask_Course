@@ -1,0 +1,21 @@
+<form action="" method="post">
+            {{form.hidden_tag()}}
+            {{form.name.label}}
+            {{form.name()}} 
+            <!-- Boolean Field -->
+            <br>
+            {{form.isAccept()}} {{form.isAccept.label}}
+            <br>
+            <!-- Radio button -->
+            {{form.gender.label}}
+            {{form.gender}}
+            <!-- select -->
+            {{form.skill.label}}<br>
+            {{form.skill}}
+            <br>
+            <!-- Area -->
+            {{form.address.label}}<br>
+            {{form.address(class="form-control")}}
+            <!-- Submit --><br>
+            {{form.submit(class="btn btn-success")}}
+        </form>

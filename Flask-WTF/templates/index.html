@@ -1,0 +1,29 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="container my-2">
+        {% for message in get_flashed_messages() %}
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+        {% endfor %}
+        {{ wtf.quick_form(form)}}
+        <hr>
+        {%if session['name']%}
+            You name is : <strong>{{session['name']}}</strong><br>
+            You Accept ? : <strong>{{session['isAccept']}}</strong><br>
+            You Gender : <strong>{{session['gender']}}</strong><br>
+            You Skill : <strong>{{session['skill']}}</strong><br>
+            You Address : <strong>{{session['address']}}</strong>
+        {%else%}
+            No data...
+        {%endif%}
+    </div>  
+    <script>
+        const btn = document.querySelector('.btn.btn-default');
+        btn.classList.remove('btn-default');
+        btn.classList.add('btn-success');
+    </script>
+{% endblock %}

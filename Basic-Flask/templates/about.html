@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+</head>
+<body>
+    <h1>Hello Welcome to About</h1>
+    <!-- <img src="../static/picnic-food-01.jpg" alt=""> -->
+    <ul>
+        {% for item in myproduct %}
+            <li>{{item}}</li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        <li><a href="/">HOME</a></li>
+        <li><a href="/admin">Admin</a></li>
+    </ul>
+</body>
+</html>
+{% endblock %}
