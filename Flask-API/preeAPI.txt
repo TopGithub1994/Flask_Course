@@ -1,0 +1,7 @@
+API สภาพอากาศของแต่ละจังหวัด
+
+- รหัสจังหวัด (PK)
+- ชื่อ (TH/EN)
+- อุณหภูมิ Temperature 
+- สภาพ Whether
+- Population
