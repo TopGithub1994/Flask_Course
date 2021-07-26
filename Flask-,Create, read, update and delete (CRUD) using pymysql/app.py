@@ -4,7 +4,7 @@ from flaskext.mysql import MySQL
 import pymysql
  
 app = Flask(__name__)
-app.secret_key = "Cairocoders-Ednalan"
+app.secret_key = "Thanonchai-2021"
   
 mysql = MySQL()
    
